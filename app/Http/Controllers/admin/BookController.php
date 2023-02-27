@@ -90,8 +90,8 @@ class BookController extends Controller
     {
         //
         $data = $request->all();
-        $book->fill($data);
-        $book->update();
+
+        $book->update($data);
         return redirect()->route('admin.books.show', $book->id);
     }
 
