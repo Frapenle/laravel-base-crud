@@ -7,3 +7,32 @@
 .information{
    width: 50%;
 }
+
+.container-bg{
+   background-color: rgba(0, 150, 7, 0.525);
+}
+
+.best-seller-books{
+   background-image: url(https://www.gdoweek.it/wp-content/uploads/sites/7/2022/06/Mondadori-Store.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+
+   h1{
+      color: white;
+   }
+}
+
+.blue-app{
+   margin: 1rem;
+   width: 300px;
+   height: 4rem;
+   background-color: #ffffff;
+
+   h1{
+      color: black;
+   }
+
+   img{
+      height: 4rem;
+   }
+}
