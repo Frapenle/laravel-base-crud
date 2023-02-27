@@ -15,8 +15,9 @@ class BookController extends Controller
      */
     public function index()
     {
-
-        return view('guest.books.index', compact('books'));
+        //
+        $books = Book::all();
+        return view('guest.index', compact('books'));
     }
 
     /**
@@ -46,10 +47,9 @@ class BookController extends Controller
      * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($book)
+    public function show($id)
     {
         //
-        return view('guest.books.show', compact('book'));
     }
 
     /**
