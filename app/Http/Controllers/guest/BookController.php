@@ -4,6 +4,7 @@ namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -15,6 +16,7 @@ class BookController extends Controller
     public function index()
     {
         //
+        return view('guest.index', compact('books'));
     }
 
     /**
@@ -41,12 +43,13 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
         //
+        return view('guest.show', compact('book'));
     }
 
     /**
