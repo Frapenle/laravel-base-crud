@@ -18,7 +18,7 @@ class BookController extends Controller
     public function index()
     {
         //
-        return view('admin.index', compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**
@@ -53,7 +53,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         //
-        return view('admin.show', compact('book'));
+        return view('admin.books.show', compact('book'));
     }
 
     /**
@@ -89,6 +89,6 @@ class BookController extends Controller
     {
         //
         $book->delete();
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.books.index');
     }
 }
