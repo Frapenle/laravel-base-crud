@@ -17,12 +17,12 @@ use App\Http\Controllers\guest\BookController as GuestBookController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.books.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     function () {
