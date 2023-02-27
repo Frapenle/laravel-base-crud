@@ -26,7 +26,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     function () {
-
+        //add routes trashed and force-deletes
+        Route::get('trashed', [AdminBookController::class, 'trashed'])->name('books.trashed');
+        Route::delete('books/force-delete/{id}', [AdminBookController::class, 'forceDelete'])->name('books.forceDelete');
         Route::resource('/books', AdminBookController::class);
     }
 );
