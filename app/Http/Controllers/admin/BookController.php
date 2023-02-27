@@ -135,4 +135,23 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('admin.books.index');
     }
+
+    public function restoreDeleted($id)
+    {
+        $book = Book::onlyTrashed()->find($id)->restore();
+        return redirect()->route('admin.books.trashed');
+    }
+
+    public function trashed()
+    {
+        $books = Book::onlyTrashed()->get();
+        return view('admin.books.trashed', compact('books'));
+    }
+
+    public function forceDelete($id)
+    {
+        $book = Book::onlyTrashed()->find($id);
+        $book->forceDelete();
+        return redirect()->route('admin.books.trashed');
+    }
 }
