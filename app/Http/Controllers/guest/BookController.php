@@ -4,6 +4,7 @@ namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -15,6 +16,8 @@ class BookController extends Controller
     public function index()
     {
         //
+        $books = Book::all();
+        return view('guest.index', compact('books'));
     }
 
     /**
@@ -41,7 +44,7 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,7 +78,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

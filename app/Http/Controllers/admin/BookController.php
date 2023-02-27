@@ -29,8 +29,7 @@ class BookController extends Controller
     public function create()
     {
         //
-
-
+        return view('admin.books.create', ["book" => new Book()]);
     }
 
     /**
@@ -42,6 +41,17 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+
+        // $newRules= $this->rules;
+        // $newRules['ISBN']= 'required|string|size:13|unique:books';
+
+        //$request->validate($this->rules, $this->messages);
+
+        $newBook = new Book();
+        $newBook->fill($data);
+        $newBook->save();
+        return redirect()->route('admin.books.show', $newBook->id);
     }
 
     /**
@@ -53,7 +63,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         //
-        return view('admin.show', compact('book'));
+        return view('admin.books.show', compact('book'));
     }
 
     /**
@@ -89,6 +99,6 @@ class BookController extends Controller
     {
         //
         $book->delete();
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.books.index');
     }
 }
