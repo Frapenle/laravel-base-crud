@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -15,6 +18,7 @@ class BookController extends Controller
     public function index()
     {
         //
+        return view('admin.index', compact('books'));
     }
 
     /**
@@ -25,6 +29,8 @@ class BookController extends Controller
     public function create()
     {
         //
+
+
     }
 
     /**
@@ -41,12 +47,13 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
         //
+        return view('admin.show', compact('book'));
     }
 
     /**
@@ -75,11 +82,13 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
         //
+        $book->delete();
+        return redirect()->route('admin.index');
     }
 }
