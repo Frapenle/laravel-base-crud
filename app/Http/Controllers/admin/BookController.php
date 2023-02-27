@@ -18,7 +18,8 @@ class BookController extends Controller
     public function index()
     {
         //
-        return view('admin.index', compact('books'));
+        $books = Book::all();
+        return view('admin.books.index', compact('books'));
     }
 
     /**
@@ -69,12 +70,13 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
         //
+        return view('admin.books.edit', compact('book'));
     }
 
     /**
@@ -84,9 +86,13 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
         //
+        $data = $request->all();
+
+        $book->update($data);
+        return redirect()->route('admin.books.show', $book->id);
     }
 
     /**
