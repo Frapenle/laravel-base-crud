@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BookController as AdminBookController;
+use App\Http\Controllers\guest\BookController as GuestBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         Route::resource('/books', AdminBookController::class);
     }
 );
+
+Route::resource('/', GuestBookController::class);
 
 
 
