@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('genre');
             $table->text('description');
             $table->string('cover');
-            $table->dateTime('release_date');
+            $table->date('release_date');
             $table->timestamps();
         });
     }
