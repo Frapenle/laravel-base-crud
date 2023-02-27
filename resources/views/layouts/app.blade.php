@@ -16,7 +16,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css " rel="stylesheet">
     @vite(['resources/js/app.js'])
+    @vite(['resources/js/deleteHandler.js'])
 </head>
 
 <body>

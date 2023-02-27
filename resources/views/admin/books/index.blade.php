@@ -32,7 +32,7 @@
                             <td class="" style="width: 220px">
                                 <a href=" {{route('admin.books.show', $book->id)}} " class="btn btn-primary">Show</i></a>
                                 <a href=" {{route('admin.books.edit', $book->id)}} " class="btn btn-warning">Edit</i></a>
-                                <form action="{{ route('admin.books.destroy', $book->id)}}" method="post" class="d-inline-block">
+                                <form action="{{ route('admin.books.destroy', $book->id)}}" method="post" class="d-inline-block form-deleter">
                                     @csrf
                                     @method('DELETE')
 
