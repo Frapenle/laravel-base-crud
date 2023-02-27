@@ -31,7 +31,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     }
 );
 
-Route::resource('/', GuestBookController::class);
+Route::resource('/guest/books', GuestBookController::class);
 
 
 
