@@ -47,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{url('/guest/books') }}">{{ __('Home') }}</a>
                         </li>
                     </ul>
 
@@ -70,7 +70,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
+                                <a class="dropdown-item" href="{{ url('admin/books') }}">{{__('Dashboard')}}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
