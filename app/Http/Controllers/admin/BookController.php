@@ -10,6 +10,33 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
+
+    protected $rules = [
+        'ISBN' => 'required|size:13|unique:books,ISBN',
+        'title' => 'required|min:5|max:255',
+        'author' => 'required|min:2|max:255',
+        'genre' => 'required|min:5|max:20',
+        'description' => 'required|min:10',
+        'cover' => 'min:5|max:255',
+        'release_date' => 'required',
+
+
+    ];
+
+    protected $messages = [
+        'ISBN.required' => 'ISBN obbligatorio',
+        'ISBN.size' => 'ISBN obbligatoriamente di 13 caratteri',
+        'title.required' => 'Il titolo è obbligatorio',
+        'title.min' => 'Inserisci almeno 5 caratteri per il titolo',
+        'author.required' => 'è obbligatorio inserire un autore',
+        'genre.required' => 'il genere è obbligatorio',
+        'description.required' => 'La descrizione del libro è obbligatoria',
+        'description.min' => 'Inserisci almeno 10 caratteri per la descrizione',
+        'release_date.required' => 'Inserisci una data',
+
+
+
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -44,10 +71,10 @@ class BookController extends Controller
         //
         $data = $request->all();
 
-        // $newRules= $this->rules;
+
         // $newRules['ISBN']= 'required|string|size:13|unique:books';
 
-        //$request->validate($this->rules, $this->messages);
+        $request->validate($this->rules, $this->messages);
 
         $newBook = new Book();
         $newBook->fill($data);
@@ -90,6 +117,7 @@ class BookController extends Controller
     {
         //
         $data = $request->all();
+        $request->validate($this->rules, $this->messages);
 
         $book->update($data);
         return redirect()->route('admin.books.show', $book->id);
