@@ -16,9 +16,7 @@ use App\Http\Controllers\guest\BookController as GuestBookController;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.books.index');
-});
+Route::get('/', [GuestBookController::class, 'index']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
