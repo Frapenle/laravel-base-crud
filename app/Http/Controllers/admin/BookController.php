@@ -18,7 +18,7 @@ class BookController extends Controller
     public function index()
     {
         //
-        return view('admin.index', compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**
