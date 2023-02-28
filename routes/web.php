@@ -29,6 +29,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         //add routes trashed and force-deletes
         Route::get('trashed', [AdminBookController::class, 'trashed'])->name('books.trashed');
         Route::delete('books/force-delete/{id}', [AdminBookController::class, 'forceDelete'])->name('books.forceDelete');
+        Route::get('books/restore/{id}', [AdminBookController::class, 'restoreDeleted'])->name('books.restore');
+        Route::post('books/restore-all', [AdminBookController::class, 'restoreAll'])->name('restore-all');
+        Route::delete('books/delete-all', [AdminBookController::class, 'deleteAll'])->name('delete-all');
         Route::resource('/books', AdminBookController::class);
     }
 );
