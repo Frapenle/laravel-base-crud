@@ -131,15 +131,18 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
         $book->delete();
         return redirect()->route('admin.books.index');
     }
 
     public function restoreDeleted($id)
     {
-        $book = Book::onlyTrashed()->find($id)->restore();
-        return redirect()->route('admin.books.trashed');
+        $book = Book::onlyTrashed()->find($id);
+        // ======= fix problem with title ==========
+        // dd($book->id);
+        // dd($book->title);
+        $message = "{$book->id} è stato ripristinato";
+        return redirect()->route('admin.books.trashed')->with('message', $message)->with('alert-type', 'alert-success');
     }
 
     public function trashed()
@@ -152,6 +155,23 @@ class BookController extends Controller
     {
         $book = Book::onlyTrashed()->find($id);
         $book->forceDelete();
-        return redirect()->route('admin.books.trashed');
+        $message = "{$book->title} has been permanently deleted";
+        return redirect()->route('admin.books.trashed')->with('message', $message)->with('alert-type', 'alert-danger');
+    }
+
+    // restore and delete all
+    public function restoreAll()
+    {
+        Book::onlyTrashed()->restore();
+        $message = 'All records are successfully deleted';
+
+        return redirect()->route('admin.books.index')->with('message', $message)->with('alert-type', 'alert-success');
+    }
+
+    public function deleteAll()
+    {
+        $test = Book::onlyTrashed()->forceDelete();
+        $message = 'All records are successfully deleted';
+        return redirect()->route('admin.books.index')->with('message', $message)->with('alert-type', 'alert-danger');
     }
 }
