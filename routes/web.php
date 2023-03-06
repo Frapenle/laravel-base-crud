@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BookController as AdminBookController;
 use App\Http\Controllers\guest\BookController as GuestBookController;
+use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,13 @@ use App\Http\Controllers\guest\BookController as GuestBookController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $books= DB::table('books')->take(3)->get();
+    return view('welcome', compact('books'));
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     function () {
