@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Admim Index</h1>
+            <div class="div d-flex justify-content-between">
+                <h1 class="d-inline-block">Admim Index</h1>
+                <a href="{{route('admin.books.trashed')}} " class="btn btn-dark align-self-center">Bin</i></a>
+            </div>
         </div>
         <div class="col-12">
             <table class="table table-striped">
