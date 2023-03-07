@@ -38,7 +38,6 @@
                                 <form action="{{ route('admin.books.destroy', $book->id)}}" method="post" class="d-inline-block form-deleter">
                                     @csrf
                                     @method('DELETE')
-
                                     <button type="submit" class="btn btn-danger"> Delete </button>
                                 </form>
                             </td>

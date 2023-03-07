@@ -4,7 +4,7 @@
 <div id="form-create" class="container mt-5">
     <div class="row">
         <div class="col-12">
-            @include('admin.partials.form', ['route' => 'admin.books.update', 'idForm'=>'create-form', 'method' => 'POST', 'project' => $book])
+            @include('admin.partials.form', ['route' => 'admin.books.update', 'idForm'=>'create-form', 'method' => 'PUT', 'project' => $book])
         </div>
     </div>
 </div>
