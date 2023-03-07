@@ -11,5 +11,10 @@ class Book extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = array('ISBN', 'title', 'author', 'genre', 'description', 'cover', 'release_date');
+    protected $fillable = array('ISBN', 'title', 'author', 'genre', 'description', 'cover', 'release_date', 'category_id');
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

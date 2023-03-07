@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Book;
-
+use App\Models\Category;
+use Faker\Generator as faker;
 
 class BooksTableSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class BooksTableSeeder extends Seeder
      * @return void
      */
 
-    public function run()
+    public function run(Faker $faker)
     {
 
         $books = [
@@ -201,10 +202,11 @@ class BooksTableSeeder extends Seeder
             ],
 
         ];
-
+        $categories = Category::all()->pluck('id');
         foreach ($books as $book) {
             $newBook = new Book();
             $newBook->cover = $book['cover'];
+            $newBook->category_id = $faker->randomElement($categories);
             $newBook->title = $book['title'];
             $newBook->author = $book['author'];
             $newBook->ISBN = $book['ISBN'];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,9 +19,8 @@ class BookController extends Controller
         'genre' => 'required|min:5|max:20',
         'description' => 'required|min:10',
         'cover' => 'min:5|max:255',
-        'release_date' => 'required',
-
-
+        'release_date' => 'required|date',
+        'category_id' => ['required', 'exists:categories,id']
     ];
 
     protected $messages = [
@@ -33,8 +33,8 @@ class BookController extends Controller
         'description.required' => 'La descrizione del libro è obbligatoria',
         'description.min' => 'Inserisci almeno 10 caratteri per la descrizione',
         'release_date.required' => 'Inserisci una data',
-
-
+        'category_id.required' => 'Campo obbligatorio',
+        'category_id.exists' => 'errore',
 
     ];
     /**
@@ -57,7 +57,7 @@ class BookController extends Controller
     public function create()
     {
         //
-        return view('admin.books.create', ["book" => new Book()]);
+        return view('admin.books.create', ["book" => new Book(), 'categories' => Category::all()]);
     }
 
     /**
@@ -103,7 +103,7 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         //
-        return view('admin.books.edit', compact('book'));
+        return view('admin.books.edit', ['book' => $book, 'categories' => Category::all()]);
     }
 
     /**
@@ -117,7 +117,8 @@ class BookController extends Controller
     {
         //
         $data = $request->all();
-        $request->validate($this->rules, $this->messages);
+        $req = $request->validate($this->rules, $this->messages);
+        // dd($req);
 
         $book->update($data);
         return redirect()->route('admin.books.show', $book->id);
